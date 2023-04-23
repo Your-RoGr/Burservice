@@ -1,25 +1,80 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Tabloid from './Tabloid';
+import ColorSelect from './ColorSelect';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [text, setText] = useState('');
+  const [tabloidWidth, setTabloidWidth] = useState(50);
+  const [tabloidHeight, setTabloidHeight] = useState(7);
+  const [letterColor, setLetterColor] = useState('white');
+  const [randomizeColors, setRandomizeColors] = useState(false);
+
+  const handleTextChange = (event) => {setText(event.target.value);};
+
+  const handleWidthChange = (event) => {
+    setTabloidWidth(parseInt(event.target.value));
+  };
+
+  const handleHeightChange = (event) => {
+    setTabloidHeight(parseInt(event.target.value));
+  };
+
+  const handleColorChange = (color) => {
+    setLetterColor(color);
+  };
+
+  const handleRandomizeChange = (event) => {
+    setRandomizeColors(event.target.checked);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="app">
+        <div className="controls">
+          <label>
+            Text:
+            <input type="text" value={text} onChange={handleTextChange} />
+          </label>
+          <label>
+            Width:
+            <input
+                type="number"
+                value={tabloidWidth}
+                onChange={handleWidthChange}
+            />
+          </label>
+          <label>
+            Height:
+            <input
+                type="number"
+                value={tabloidHeight}
+                onChange={handleHeightChange}
+            />
+          </label>
+          <label>
+            Color:
+            <ColorSelect value={letterColor} onChange={handleColorChange} />
+          </label>
+          <label>
+            Randomize colors:
+            <input
+                type="checkbox"
+                checked={randomizeColors}
+                onChange={handleRandomizeChange}
+            />
+          </label>
+        </div>
+        <Tabloid
+            text={text}
+            width={tabloidWidth}
+            height={tabloidHeight}
+            cellWidth={30}
+            cellHeight={30}
+            letterColor={letterColor}
+            randomizeColors={randomizeColors}
+        />
+      </div>
   );
-}
+};
 
 export default App;

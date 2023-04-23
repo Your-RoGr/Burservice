@@ -1,0 +1,21 @@
+.color-select {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.color-select-label {
+    margin-right: 5px;
+}
+
+.color-option {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.color-option:hover {
+    border: 2px solid black;
+}
