@@ -7,29 +7,37 @@ import './Tabloid.css';
 // Создаем компонент Tabloid и передаем ему пропсы
 const Tabloid = ({
                      width, // Ширина таблицы в количестве ячеек
-                     height = 'auto', // Высота таблицы в количестве ячеек (по умолчанию автоматическая высота)
-                     cellWidth = 30, // Ширина ячейки таблицы в пикселях
-                     cellHeight = 30, // Высота ячейки таблицы в пикселях
-                     letterColor, // Цвет букв в ячейках
-                     randomizeColors = false, // Флаг случайного выбора цветов для ячеек (по умолчанию false)
+                     height, // Высота таблицы в количестве ячеек (по умолчанию автоматическая высота)
+                     cellWidth = 100, // Ширина ячейки таблицы в пикселях
+                     cellHeight = 100, // Высота ячейки таблицы в пикселях
+                     colorScheme,
                      text, // Текст, который нужно вывести в таблицу
                  }) => {
 
-    // Разбиваем текст на строки
-    const rows = text.split('\n');
+    height = Math.max(height, Math.ceil(text.length / width));
 
-    // Разбиваем строки на массивы символов
-    const letters = rows.map((row) => row.split(''));
+    text = text.substring(0, width * height);
 
-    // Создаем массив цветов для каждой ячейки таблицы
-    const colors = randomizeColors
-        ? letters.map((row) => row.map(() => getRandomColor()))
-        : letters.map((row) => row.map(() => letterColor));
+    const table = [];
 
+    for (let i = 0; i < height; i++) {
+        table[i] = new Array(width);
+    }
+
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            table[i][j] = '';
+        }
+    }
+
+
+    for (let i = 0; i < text.length; i++) {
+        table[Math.floor(i / width)][i % width] = text[i];
+    }
     // Стили для всей таблицы
     const tabloidStyle = {
-        width: `${width * cellWidth}px`,
-        height: height === 'auto' ? 'auto' : `${height * cellHeight}px`,
+        width: `${cellWidth}px`,
+        height: `${cellHeight}px`,
         display: 'flex',
         flexDirection: 'column',
     };
@@ -42,8 +50,8 @@ const Tabloid = ({
 
     // Стили для ячейки таблицы
     const cellStyle = {
-        width: `${cellWidth}px`,
-        height: `${cellHeight}px`,
+        'min-width': `${cellWidth}px`,
+        'min-height': `${cellHeight}px`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -60,33 +68,26 @@ const Tabloid = ({
         fontWeight: 'bold',
         fontSize: `${cellHeight}px`,
     };
-     
+
     // Возвращаем разметку таблицы, создавая div-элементы для каждой строки и ячейки
     return (
         <div style={tabloidStyle}>
-            {letters.map((row, i) => (
+            {table.map((row, i) => (
                 <div key={i} style={rowStyle}>
                     {row.map((letter, j) => (
-                        <div key={`${i}-${j}`} style={{ ...cellStyle, backgroundColor: colors[i][j] }}>
-                            <span 
-                            style={{ 
-                                ...textStyle, 
-                                color: chroma(colors[i][j]).luminance() > 0.5 ? 'black' : 'white'}}>{letter}
+                        <div key={`${i}-${j}`} style={{...cellStyle, backgroundColor: colorScheme.getColor(letter)}}>
+                            <span
+                                style={{
+                                    ...textStyle,
+                                    color: chroma(colorScheme.getColor(letter)).luminance() > 0.5 ? 'black' : 'white'
+                                }}>{letter}
                             </span>
                         </div>
                     ))}
-                </div> 
+                </div>
             ))}
         </div>
     );
-};
-
-// Функция, которая возвращает случайный цвет из списка
-const getRandomColor = () => {
-    // const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
-    // return colors[Math.floor(Math.random() * colors.length)];
-    return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
-
 };
 
 // Экспортируем компонент Tabloid для использования в других файлах
