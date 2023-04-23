@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9Fm6SLUpZz2z//82sV1onBX4zaYQ3+XpbPoqbWkgAGJk4MFqdJVeMBYQmEgepbMyuYhz+Pt9QQBFZLxolKSLtw==",
+  "dgSpecHash": "2t91qZ4idzzKNDDzb9kDP/SeUW16MOFQA6vfLcq3kBELQ37KfHPA0+2rhEq4Apj3aGPC9efve98KzssGIkSF1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ro Gr\\Desktop\\Projects\\Programs\\C#\\Burservice\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\Ro Gr\\Desktop\\Projects\\Programs\\C#\\Burservice\\Server\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,33 +1,27 @@
+// Импортируем библиотеки и компоненты
 import React, { useState } from 'react';
 import Tabloid from './Tabloid';
 import ColorSelect from './ColorSelect';
 import './App.css';
 
+// Создаем функциональный компонент App
 const App = () => {
+
+  // Создаем состояния с помощью хука useState
   const [text, setText] = useState('');
   const [tabloidWidth, setTabloidWidth] = useState(50);
   const [tabloidHeight, setTabloidHeight] = useState(7);
   const [letterColor, setLetterColor] = useState('white');
   const [randomizeColors, setRandomizeColors] = useState(false);
 
+  // Обработчики событий изменения значения состояний
   const handleTextChange = (event) => {setText(event.target.value);};
+  const handleWidthChange = (event) => {setTabloidWidth(parseInt(event.target.value));};
+  const handleHeightChange = (event) => {setTabloidHeight(parseInt(event.target.value));};
+  const handleColorChange = (color) => {setLetterColor(color);};
+  const handleRandomizeChange = (event) => {setRandomizeColors(event.target.checked);};
 
-  const handleWidthChange = (event) => {
-    setTabloidWidth(parseInt(event.target.value));
-  };
-
-  const handleHeightChange = (event) => {
-    setTabloidHeight(parseInt(event.target.value));
-  };
-
-  const handleColorChange = (color) => {
-    setLetterColor(color);
-  };
-
-  const handleRandomizeChange = (event) => {
-    setRandomizeColors(event.target.checked);
-  };
-
+  // Возвращаем разметку приложения
   return (
       <div className="app">
         <div className="controls">
@@ -77,4 +71,5 @@ const App = () => {
   );
 };
 
+// Экспортируем компонент App
 export default App;

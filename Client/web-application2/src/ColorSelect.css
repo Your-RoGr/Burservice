@@ -1,21 +1,25 @@
+/* Стили для класса .color-select */
 .color-select {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
+    display: flex; /* Используем флекс-контейнер для управления расположением элементов */
+    align-items: center; /* Выравниваем элементы по центру по вертикали */
+    margin-right: 10px; /* Добавляем отступ справа на 10 пикселей */
 }
 
+/* Стили для класса .color-select-label */
 .color-select-label {
-    margin-right: 5px;
+    margin-right: 5px; /* Добавляем отступ справа на 5 пикселей */
 }
 
+/* Стили для класса .color-option */
 .color-option {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 5px;
-    cursor: pointer;
+    width: 20px; /* Задаем ширину круглого элемента равную 20 пикселям */
+    height: 20px; /* Задаем высоту круглого элемента равную 20 пикселям */
+    border-radius: 50%; /* Задаем радиус скругления углов, чтобы сделать элемент круглым */
+    margin-right: 5px; /* Добавляем отступ справа на 5 пикселей */
+    cursor: pointer; /* Добавляем курсор-указатель при наведении на элемент, чтобы показать, что он является кликабельным */
 }
 
+/* Стили для класса .color-option при наведении на него мышью */
 .color-option:hover {
-    border: 2px solid black;
+    border: 2px solid black; /* Добавляем черную границу толщиной 2 пикселя при наведении на элемент мышью */
 }

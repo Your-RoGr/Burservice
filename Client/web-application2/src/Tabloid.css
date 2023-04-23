@@ -1,22 +1,25 @@
+/* Стили применяются к контейнерному элементу таблоида: */
 .tabloid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    border: 1px solid black;
-    padding: 5px;
+    display: flex; /* использовать flex-раскладку */
+    flex-wrap: wrap; /* переносить ячейки на следующую строку, когда они превышают ширину контейнера */
+    justify-content: flex-start; /* выравнивать ячейки по левому краю */
+    border: 1px solid black; /* добавить черную границу вокруг контейнера */
+    padding: 5px; /* добавить отступ в 5 пикселей вокруг контейнера */
 }
 
+/* Стили применяются к каждой отдельной ячейке таблоида: */
 .tabloid-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: -1px;
-    margin-bottom: -1px;
-    cursor: pointer;
+    display: flex; /* использовать flex-раскладку */
+    justify-content: center; /* выравнивать содержимое по горизонтали по центру */
+    align-items: center; /* выравнивать содержимое по вертикали по центру */
+    font-size: 20px; /* задать размер шрифта 20 пикселей */
+    font-weight: bold; /* задать жирность шрифта жирной */
+    margin-right: -1px; /* удалить правый отступ ячейки, чтобы она плотно прилегала к соседним */
+    margin-bottom: -1px; /* удалить нижний отступ ячейки, чтобы она плотно прилегала к соседним */
+    cursor: pointer; /* изменить форму курсора на стрелку при наведении на ячейку */
 }
 
+/* Стили применяются к каждой отдельной ячейке таблоида при наведении на нее курсора мыши: */
 .tabloid-cell:hover {
-    background-color: lightgray;
+    background-color: lightgray; /* изменить цвет фона ячейки на светло-серый */
 }
