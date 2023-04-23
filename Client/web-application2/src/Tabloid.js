@@ -1,6 +1,8 @@
 // Импортируем React и файл стилей Tabloid.css
 import React from 'react';
+import chroma from "chroma-js";
 import './Tabloid.css';
+
 
 // Создаем компонент Tabloid и передаем ему пропсы
 const Tabloid = ({
@@ -46,6 +48,10 @@ const Tabloid = ({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
+        border: '1px solid lightgrey',
+        borderRadius: '4px',
+        padding: '4px',
+        margin: '1px',
     };
 
     // Стили для текста в ячейке
@@ -54,7 +60,7 @@ const Tabloid = ({
         fontWeight: 'bold',
         fontSize: `${cellHeight}px`,
     };
-
+     
     // Возвращаем разметку таблицы, создавая div-элементы для каждой строки и ячейки
     return (
         <div style={tabloidStyle}>
@@ -62,10 +68,14 @@ const Tabloid = ({
                 <div key={i} style={rowStyle}>
                     {row.map((letter, j) => (
                         <div key={`${i}-${j}`} style={{ ...cellStyle, backgroundColor: colors[i][j] }}>
-                            <span style={textStyle}>{letter}</span>
+                            <span 
+                            style={{ 
+                                ...textStyle, 
+                                color: chroma(colors[i][j]).luminance() > 0.5 ? 'black' : 'white'}}>{letter}
+                            </span>
                         </div>
                     ))}
-                </div>
+                </div> 
             ))}
         </div>
     );
@@ -73,9 +83,12 @@ const Tabloid = ({
 
 // Функция, которая возвращает случайный цвет из списка
 const getRandomColor = () => {
-    const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
-    return colors[Math.floor(Math.random() * colors.length)];
+    // const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
+    // return colors[Math.floor(Math.random() * colors.length)];
+    return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+
 };
 
 // Экспортируем компонент Tabloid для использования в других файлах
 export default Tabloid;
+
