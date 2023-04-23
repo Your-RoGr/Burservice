@@ -1,9 +1,14 @@
+// Импортируем библиотеки и компоненты
 import React, { useState } from "react"; 
- 
+
+// Создаем функциональный компонент App 
 const App = () => { 
+
+    // Создаем состояния с помощью хука useState
   const [textValue, setTextValue] = useState(""); 
   const [selectedSortMethod, setSelectedSortMethod] = useState(""); 
  
+  // Обработчик события изменения текстового поля
   const handleChange = (e) => { 
     const file = e.target.files[0]; 
  
@@ -13,25 +18,26 @@ const App = () => {
       const fileContent = e.target.result; 
       console.log(fileContent); 
       setTextValue(fileContent); 
-      sortList(fileContent, selectedSortMethod); 
+      sortList(fileContent); 
     }; 
  
     reader.onerror = (e) => alert(e.target.error.name); 
     reader.readAsText(file); 
   }; 
- 
+
+  // Обработчик события изменения метода сортировки
   const handleSortChange = (e) => { 
-    setSelectedSortMethod(e.target.value); 
+    setTextValue(e.target.value); 
   }; 
  
-
-  const sortList = (fileContent, selectedSortMethod) => { 
+  // Отправка запроса на сервер
+  const sortList = (fileContent) => { 
     fetch("http://localhost:5000/sort", { 
       method: "POST", 
       headers: { 
         "Content-Type": "application/json", 
       }, 
-      body: JSON.stringify({ fileContent, selectedSortMethod }), 
+      body: JSON.stringify({ fileContent }), 
     }) 
       .then((response) => { 
         console.log("Sort successfully"); 
@@ -58,13 +64,14 @@ const App = () => {
     justifyContent: 'center',  
     height: '100vh'
   }
- 
+
+  // Возвращаем разметку приложения
   return ( 
     <>
     <div align="center"> 
       <input type="file" name="input" onChange={handleChange} /> 
       <select 
-        value={selectedSortMethod} 
+        value={textValue} 
         onChange={handleSortChange} 
         style={{ marginTop: 15, marginLeft: 15 }}
       > 
@@ -73,9 +80,10 @@ const App = () => {
         <option value="reverse">reverse</option> 
       </select>
       <button 
-      value={selectedSortMethod} 
-      onChange={handleSortChange}
-      style={{ marginLeft: 15 }} >
+        value={textValue} 
+        onChange={handleSortChange}
+        style={{ marginLeft: 15 }} 
+      >
       Отсортировать  
       </button>
     </div> 
@@ -122,5 +130,6 @@ const App = () => {
     </>
   ); 
 }; 
- 
+
+// Экспортируем компонент App
 export default App;
