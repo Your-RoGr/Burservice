@@ -25,15 +25,19 @@ const App = () => {
   }; 
  
 
-  const sortList = (fileContent, selectedSortMethod) => { 
-    fetch("http://localhost:5000/sort", { 
+  const sortList = (fileContent, selectedSortMethod) => {
+    console.log(JSON.stringify(JSON.stringify(fileContent.split('\r\n'))));
+    fetch("https://localhost:44353/sort", {
       method: "POST", 
       headers: { 
         "Content-Type": "application/json", 
-      }, 
-      body: JSON.stringify({ fileContent, selectedSortMethod }), 
+      },
+      body: JSON.stringify(fileContent.split('\r\n')),
     }) 
-      .then((response) => { 
+      .then((response) => {
+        response.json().then((data) => {
+          console.log(data)
+        })
         console.log("Sort successfully"); 
       }) 
       .catch((error) => { 
@@ -44,8 +48,7 @@ const App = () => {
   // стили для текстового поля
   const textAreaStyle = {
     marginTop: 15, 
-    marginBottom: 20, 
-    width: "100%" , 
+    marginBottom: 20,
     resize: 'vertical', 
     height: '100vh', 
     width: "45vw"
