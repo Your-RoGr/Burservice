@@ -13,8 +13,7 @@ const App = () => {
       const fileContent = e.target.result; 
       console.log(fileContent); 
       setTextValue(fileContent); 
-      readFile(fileContent); 
-      sortList(selectedSortMethod); 
+      sortList(fileContent, selectedSortMethod); 
     }; 
  
     reader.onerror = (e) => alert(e.target.error.name); 
@@ -25,29 +24,14 @@ const App = () => {
     setSelectedSortMethod(e.target.value); 
   }; 
  
-  const readFile = (fileContent) => { 
-    fetch("/read", { 
-      method: "POST", 
-      headers: { 
-        "Content-Type": "application/json", 
-      }, 
-      body: JSON.stringify({ fileContent }), 
-    }) 
-      .then((response) => { 
-        console.log("File read successfully"); 
-      }) 
-      .catch((error) => { 
-        console.error("Error reading file:", error); 
-      }); 
-  }; 
 
-  const sortList = (selectedSortMethod) => { 
-    fetch("/sort", { 
+  const sortList = (fileContent, selectedSortMethod) => { 
+    fetch("http://localhost:5000/sort", { 
       method: "POST", 
       headers: { 
         "Content-Type": "application/json", 
       }, 
-      body: JSON.stringify({ selectedSortMethod }), 
+      body: JSON.stringify({ fileContent, selectedSortMethod }), 
     }) 
       .then((response) => { 
         console.log("Sort successfully"); 
@@ -56,27 +40,85 @@ const App = () => {
         console.error("Error sorting file:", error); 
       }); 
   }; 
+
+  // стили для текстового поля
+  const textAreaStyle = {
+    marginTop: 15, 
+    marginBottom: 20, 
+    width: "100%" , 
+    resize: 'vertical', 
+    height: '100vh', 
+    width: "45vw"
+  }
+
+  // стили контейнера для списков
+  const layotStyle = {
+    display: 'flex', 
+    flexDirection: 'row', 
+    justifyContent: 'center',  
+    height: '100vh'
+  }
  
   return ( 
     <>
     <div align="center"> 
       <input type="file" name="input" onChange={handleChange} /> 
-      <select value={selectedSortMethod} onChange={handleSortChange} style={{ marginTop: 15, marginLeft: 15 }}> 
+      <select 
+        value={selectedSortMethod} 
+        onChange={handleSortChange} 
+        style={{ marginTop: 15, marginLeft: 15 }}
+      > 
         <option value="ask">ask</option> 
-        <option value="desk">desk</option> 
+        <option value="desс">desс</option> 
         <option value="reverse">reverse</option> 
-      </select> 
-      </div> 
-
-      <div align="center">
-      <textarea 
-        cols={30} 
-        rows={20} 
-        value={textValue} 
-        onChange={setTextValue} 
-        style={{ marginTop: 15, marginLeft: 15, width: "50%" }} 
-      ></textarea> 
+      </select>
+      <button 
+      value={selectedSortMethod} 
+      onChange={handleSortChange}
+      style={{ marginLeft: 15 }} >
+      Отсортировать  
+      </button>
     </div> 
+
+    <div style={layotStyle}>
+      <div style={{marginRight: '10px', marginLeft: '10px'}}>
+        <form>
+          <dl>
+            <dt><label for="title">Исходный список</label></dt>
+              <dt>      
+                <textarea 
+                  id="title" 
+                  name="title"
+                  // cols={40} 
+                  // rows={50} 
+                  value={textValue} 
+                  onChange={setTextValue} 
+                  style={textAreaStyle} >
+                </textarea>
+              </dt>
+          </dl>
+        </form>
+      </div>
+
+      <div style={{marginLeft: '10px', marginRight: '10px'}}>
+        <form>
+          <dl>
+            <dt><label for="title">Отсортированный список</label></dt>
+              <dt>      
+                <textarea 
+                  id="title" 
+                  name="title"
+                  // cols={40} 
+                  // rows={50} 
+                  value={textValue} 
+                  onChange={setTextValue} 
+                  style={textAreaStyle} >
+                </textarea>
+              </dt>
+          </dl>
+        </form>
+      </div>
+    </div>
     </>
   ); 
 }; 
