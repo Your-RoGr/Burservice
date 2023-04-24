@@ -13,7 +13,7 @@ const App = () => {
 
   // Создаем состояния с помощью хука useState
   const [text, setText] = useState('');
-  const [tabloidWidth, setTabloidWidth] = useState(50);
+  const [tabloidWidth, setTabloidWidth] = useState(30);
   const [tabloidHeight, setTabloidHeight] = useState(7);
   const [letterColor, setLetterColor] = useState('white');
   const [randomizeColors, setRandomizeColors] = useState(false);
