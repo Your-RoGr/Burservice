@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: ./Client/web-application1/
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "15646:3000"
+  backend:
+    build:
+      context: ./Server/
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "15647:80"
