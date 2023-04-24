@@ -46,8 +46,13 @@
 Добавленная функциональность: цвет текста подбирается исходя из цвета фона для лучшей читаемости.
 
 ## Демонстрация
-1. ![test-web-app1](https://user-images.githubusercontent.com/115878885/234077136-5bcf4b0d-817b-4453-a01f-6ac2decd57d0.gif)
-2. [Гифка работы второго приложения]
+
+1.
+![test-web-app1](https://user-images.githubusercontent.com/115878885/234077136-5bcf4b0d-817b-4453-a01f-6ac2decd57d0.gif)
+
+2.
+![test-web-app2](https://user-images.githubusercontent.com/115878885/234078852-fa08a4b5-9942-4cfd-999d-e88637f84012.gif)
+
 
 ## Запуск
 Инструкция для запуска
