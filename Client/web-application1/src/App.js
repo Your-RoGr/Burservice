@@ -34,7 +34,7 @@ const App = () => {
     console.log(JSON.stringify(JSON.stringify(fileContent.split("\r\n")))); 
     console.log("selectedSortMethod - " + selectedSortMethod);
  
-    // определение пути отправки в зависимости от выбранного метода сортировки 
+    // Определение пути отправки в зависимости от выбранного метода сортировки
     const url = 
       selectedSortMethod === "asc"
         ? "http://localhost:15647/sort?order=asc"
@@ -44,6 +44,7 @@ const App = () => {
         ? "http://localhost:15647/sort?order=reverse"
         : "";
 
+    // Отправляем запрос на сервер и выводим отсортированный список в textarea
     fetch(url, { 
       method: "POST", 
       headers: { 
@@ -53,8 +54,14 @@ const App = () => {
     })
       .then((response) => {
         response.json().then((data) => { 
-          console.log(data); 
-          setSortedList(data); 
+          console.log(data);
+
+          let output = "";
+          for (let i = 0; i < data.length; i++) {
+            output += data[i] + "\n";
+          }
+
+          setSortedList(output);
         }); 
         console.log("Sort successfully"); 
       }) 
@@ -142,5 +149,5 @@ const App = () => {
   ); 
 }; 
  
-// Экспортируем компонент App //
+// Экспортируем компонент App
 export default App;
