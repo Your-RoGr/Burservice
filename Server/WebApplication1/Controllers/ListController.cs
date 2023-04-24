@@ -7,13 +7,14 @@ namespace WebApplication1.Controllers;
 [ApiController]
 public class ListController : ControllerBase
 {
-    // Помечаем метод как POST запрос по урлу [host]/sort
+    // Помечаем метод как POST запрос по url [host]/sort?order=[???]
     [HttpPost]
     [Route("sort")]
     public async Task<IActionResult> Sort([FromQuery]string order, [FromBody]string[] input)
     {
         var list = new MyList<string>(input);
-
+        
+        // Оператор switch для сортировки списка в зависимости от значения параметра order
         switch (order)
         {
             case "asc":
@@ -25,7 +26,8 @@ public class ListController : ControllerBase
             case "reverse":
                 return Ok(list.Reverse());
         }
-
+        
+        // Если значение параметра order не соответствует ни одному из вариантов, возвращаем ошибку
         return BadRequest("Not supported order");
     }
 }

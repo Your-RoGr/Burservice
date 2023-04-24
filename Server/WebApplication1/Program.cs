@@ -1,9 +1,4 @@
-using WebApplication1.Services;
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Добавляем Файловый сервис, сейчас не актуален, так как читаем файл на стороне клента
-builder.Services.AddTransient<FileService>(_ => new FileService());
 
 // Регистрируем наши контроллеры из папки Controllers
 builder.Services.AddControllers();
