@@ -47,10 +47,10 @@
 
 ## Демонстрация
 
-1.
+`web-application1` — "Сортировка Low level"
 ![test-web-app1](https://user-images.githubusercontent.com/115878885/234077136-5bcf4b0d-817b-4453-a01f-6ac2decd57d0.gif)
 
-2.
+`web-application2` — "Таблоид High level"
 ![test-web-app2](https://user-images.githubusercontent.com/115878885/234078852-fa08a4b5-9942-4cfd-999d-e88637f84012.gif)
 
 
