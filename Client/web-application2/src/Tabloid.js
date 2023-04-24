@@ -14,12 +14,15 @@ const Tabloid = ({
                      text, // Текст, который нужно вывести в таблицу
                  }) => {
 
+    // Вычисляем необходимую высоту таблицы, округляя в большую сторону
     height = Math.max(height, Math.ceil(text.length / width));
 
+    // Обрезаем текст до необходимой длины
     text = text.substring(0, width * height);
 
     const table = [];
 
+    // Заполняем массив пустыми строками
     for (let i = 0; i < height; i++) {
         table[i] = new Array(width);
     }
@@ -30,10 +33,11 @@ const Tabloid = ({
         }
     }
 
-
+    // Заполняем таблицу символами из текста
     for (let i = 0; i < text.length; i++) {
         table[Math.floor(i / width)][i % width] = text[i];
     }
+
     // Стили для всей таблицы
     const tabloidStyle = {
         width: `${cellWidth}px`,
