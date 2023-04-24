@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // Создаем функциональный компонент App  
 const App = () => { 
   const [textValue, setTextValue] = useState(""); 
-  const [selectedSortMethod, setSelectedSortMethod] = useState(""); 
+  const [selectedSortMethod, setSelectedSortMethod] = useState("asc");
   const [sortedList, setSortedList] = useState(""); 
  
    // Обработчик события изменения текстового поля 
@@ -13,11 +13,10 @@ const App = () => {
  
     let reader = new FileReader(); 
  
-    reader.onload = (e) => { 
+    reader.onload = (e) => {
       const fileContent = e.target.result; 
       console.log(fileContent); 
-      setTextValue(fileContent); 
-      sortList(fileContent); 
+      setTextValue(fileContent);
     }; 
  
     reader.onerror = (e) => alert(e.target.error.name); 
@@ -30,28 +29,29 @@ const App = () => {
   }; 
  
   // Отправка запроса на сервер 
-  const sortList = (fileContent) => { 
+  const sortList = (fileContent) => {
+
     console.log(JSON.stringify(JSON.stringify(fileContent.split("\r\n")))); 
-    console.log(selectedSortMethod); 
+    console.log("selectedSortMethod - " + selectedSortMethod);
  
     // определение пути отправки в зависимости от выбранного метода сортировки 
     const url = 
-      selectedSortMethod === "asc" 
-        ? "http://localhost:5000/sort?order=asc" 
+      selectedSortMethod === "asc"
+        ? "http://localhost:15647/sort?order=asc"
         : selectedSortMethod === "desс" 
-        ? "http://localhost:5000/sort?order=desc" 
+        ? "http://localhost:15647/sort?order=desc"
         : selectedSortMethod === "reverse" 
-        ? "http://localhost:5000/sort?order=reverse" 
-        : ""; 
- 
+        ? "http://localhost:15647/sort?order=reverse"
+        : "";
+
     fetch(url, { 
       method: "POST", 
       headers: { 
         "Content-Type": "application/json", 
       }, 
       body: JSON.stringify(fileContent.split("\r\n")), 
-    }) 
-      .then((response) => { 
+    })
+      .then((response) => {
         response.json().then((data) => { 
           console.log(data); 
           setSortedList(data); 
@@ -90,7 +90,7 @@ const App = () => {
           onChange={handleSortChange} 
           style={{ marginTop: 15, marginLeft: 15 }} 
         > 
-          <option value="asc">ask</option> 
+          <option value="asc">asc</option>
           <option value="desс">desс</option> 
           <option value="reverse">reverse</option> 
         </select> 
@@ -108,7 +108,7 @@ const App = () => {
               </dt> 
               <dt> 
                 <textarea 
-                  id="title" 
+                  id="title1"
                   name="title" 
                   value={textValue} 
                   onChange={(e) => setTextValue(e.target.value)} 
@@ -127,7 +127,7 @@ const App = () => {
               </dt> 
               <dt> 
                 <textarea 
-                  id="title" 
+                  id="title2"
                   name="title" 
                   value={sortedList} 
                   onChange={(e) => setSortedList(e.target.value)} 
