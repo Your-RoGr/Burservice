@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import Tabloid from './Tabloid';
 import ColorSelect from './ColorSelect';
 import './App.css';
+import ColorRandomizedScheme from "./ColorScheme/ColorRandomizedScheme";
+import ColorSolidScheme from "./ColorScheme/ColorSolidScheme";
+
+const randomScheme = new ColorRandomizedScheme();
 
 // Создаем функциональный компонент App
 const App = () => {
@@ -20,6 +24,8 @@ const App = () => {
   const handleHeightChange = (event) => {setTabloidHeight(parseInt(event.target.value));};
   const handleColorChange = (color) => {setLetterColor(color);};
   const handleRandomizeChange = (event) => {setRandomizeColors(event.target.checked);};
+
+  const colorScheme = randomizeColors ? randomScheme : new ColorSolidScheme(letterColor);
 
   // Возвращаем разметку приложения
   return (
@@ -64,8 +70,7 @@ const App = () => {
             height={tabloidHeight}
             cellWidth={30}
             cellHeight={30}
-            letterColor={letterColor}
-            randomizeColors={randomizeColors}
+            colorScheme = {colorScheme}
         />
       </div>
   );
