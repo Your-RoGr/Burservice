@@ -54,9 +54,23 @@
 ![test-web-app2](https://user-images.githubusercontent.com/115878885/234078852-fa08a4b5-9942-4cfd-999d-e88637f84012.gif)
 
 
-## Запуск
-Инструкция для запуска
+## Запуск "Сортировка Low level"
+Для запуска первого приложения можно воспользоваться докером или запустить приложение через терминал. Для проверки работы приложения в корне есть файл `test.txt`
 
+1. Докер
+   1.1 Установить докер с [офицального сайта](https://www.docker.com/products/docker-desktop/)
+   1.2 В корне проекта вызвать команду в терминале `docker compose up`
+2. Терминал
+   2.1 В .\Server\WebApplication1 вызвать команду в терминале `dotnet run --urls=http://localhost:15647/` (Требуется [.NET SDK](https://dotnet.microsoft.com/en-us/download) для .NET 7.0)
+   2.2 В .\Client\web-application1 вызвать команду в терминале `npm install`
+   2.3 В .\Client\web-application1 вызвать команду в терминале `npm start`
+
+## Запуск "Таблоид High level"
+Второе приложение можно запустить через терминал.
+
+1. В .\Client\web-application2 вызвать команду в терминале `npm install`
+2. В .\Client\web-application2 вызвать команду в терминале `npm start`
+   
 ## Авторы
 - Родин Григорий — https://github.com/Your-RoGr
 1. Реализовал функциональность для серверной части `web-application1`:
