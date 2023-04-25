@@ -72,14 +72,14 @@
 ### Терминал
 
 1. В .\Server\WebApplication1 вызвать команду в терминале `dotnet run --urls=http://localhost:15647/` (Требуется [.NET SDK](https://dotnet.microsoft.com/en-us/download) для .NET 7.0)
-2. В .\Client\web-application1 вызвать команду в терминале `npm install`
+2. В .\Client\web-application1 вызвать команду в терминале `npm install` (Требуется [Node.js v18.16.0](https://nodejs.org/en))
 3. В .\Client\web-application1 вызвать команду в терминале `npm start`
 
 ## Запуск "Таблоид High level"
 
 Второе приложение можно запустить через терминал.
 
-1. В .\Client\web-application2 вызвать команду в терминале `npm install`
+1. В .\Client\web-application2 вызвать команду в терминале `npm install` (Требуется [Node.js v18.16.0](https://nodejs.org/en))
 2. В .\Client\web-application2 вызвать команду в терминале `npm start`
    
 ## Авторы
