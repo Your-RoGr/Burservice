@@ -8,8 +8,8 @@ import './Tabloid.css';
 const Tabloid = ({
                      width, // Ширина таблицы в количестве ячеек
                      height, // Высота таблицы в количестве ячеек (по умолчанию автоматическая высота)
-                     cellWidth = 100, // Ширина ячейки таблицы в пикселях
-                     cellHeight = 100, // Высота ячейки таблицы в пикселях
+                     cellWidth = 1, // Ширина ячейки таблицы в пикселях
+                     cellHeight = 1, // Высота ячейки таблицы в пикселях
                      colorScheme,
                      text, // Текст, который нужно вывести в таблицу
                  }) => {
@@ -54,8 +54,8 @@ const Tabloid = ({
 
     // Стили для ячейки таблицы
     const cellStyle = {
-        'min-width': `${cellWidth}px`,
-        'min-height': `${cellHeight}px`,
+        minWidth: `${cellWidth}px`,
+        minHeight: `${cellHeight}px`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
